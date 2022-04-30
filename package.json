@@ -9,15 +9,15 @@
     "pinyin",
     "chinese"
   ],
-  "homepage": "https://github.com/QiroNT/pinin#readme",
+  "homepage": "https://github.com/QiroNT/pinin-js#readme",
   "bugs": {
-    "url": "https://github.com/QiroNT/pinin/issues"
+    "url": "https://github.com/QiroNT/pinin-js/issues"
   },
   "license": "MIT",
   "author": "QiroNT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/QiroNT/pinin.git"
+    "url": "git+https://github.com/QiroNT/pinin-js.git"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
