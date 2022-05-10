@@ -17,22 +17,11 @@ export class Phoneme {
     const ret = new Set<string>()
     ret.add(str)
 
-    if (config.fCh2C && str.startsWith('c'))
-      ret.add('c').add('ch')
-    if (config.fSh2S && str.startsWith('s'))
-      ret.add('s').add('sh')
-    if (config.fZh2Z && str.startsWith('z'))
-      ret.add('z').add('zh')
-    if (config.fU2V && str.startsWith('v'))
-      ret.add(`u${str.slice(1)}`)
-    if ((config.fAng2An && str.endsWith('ang'))
-      || (config.fEng2En && str.endsWith('eng'))
-      || (config.fIng2In && str.endsWith('ing')))
-      ret.add(str.slice(0, -1))
-    if ((config.fAng2An && str.endsWith('an'))
-      || (config.fEng2En && str.endsWith('en'))
-      || (config.fIng2In && str.endsWith('in')))
-      ret.add(`${str}g`)
+    for (const [from, to] of config.fuzzy) {
+      if (!str.includes(from))
+        continue
+      ret.add(str.replace(from, to))
+    }
 
     this.strs = Array.from(ret).map(k => config.keyboard.keys?.[k] || k)
   }

@@ -10,20 +10,14 @@ export interface PinInFormat {}
 export interface PinInConfigRaw {
   dict: PinInDictRaw
   keyboard?: Keyboard
-  fZh2Z?: boolean
-  fSh2S?: boolean
-  fCh2C?: boolean
-  fAng2An?: boolean
-  fIng2In?: boolean
-  fEng2En?: boolean
-  fU2V?: boolean
+  fuzzy?: string[]
   accelerate?: boolean
-  format?: PinInFormat
 }
 export type PinInConfigResolved = {
-  [key in Exclude<keyof PinInConfigRaw, 'dict'>]: NonNullable<PinInConfigRaw[key]>
+  [key in Exclude<keyof PinInConfigRaw, 'dict' | 'fuzzy'>]: NonNullable<PinInConfigRaw[key]>
 } & {
   dict: PinInDictResolved
+  fuzzy: [string, string][]
 }
 
 export interface PinInSearchLogic {

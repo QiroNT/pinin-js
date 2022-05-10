@@ -26,9 +26,9 @@ const searcher = new TreeSearcher<number>(SearchLogicContain, p)
 p.put('测试文本', 0)
 console.assert(searcher.search('ceshi').includes(0))
 
-// fuzzy spelling
-const p2 = new PinIn({ dict: defaultDict, fSh2S: true })
-console.assert(p.contains('测试文本', 'cesi'))
+// fuzzy spelling (| for bidirectional, > for one-way)
+const p2 = new PinIn({ dict: defaultDict, fuzzy: ['sh|s', 'en>e'] })
+console.assert(p.contains('测试文本', 'cesiwe'))
 
 // pinyin format
 const c = p.genChar('圆'.charCodeAt(0))

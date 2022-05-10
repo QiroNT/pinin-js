@@ -17,25 +17,7 @@ export class Pinyin {
     const split = pinin.config.keyboard.split(str)
     const l: Phoneme[] = []
     for (const s of split) l.push(pinin.phonemes.get(s))
-    if (str.charAt(1) === 'h' && pinin.config.keyboard.type === 'QUANPIN') {
-      // here we implement sequence matching in quanpin, with a dirty trick
-      // if initial is one of 'zh' 'sh' 'ch', and fuzzy is not on, we slice it
-      // the first is one if 'z' 's' 'c', and the second is 'h'
-      const sequence = str.charAt(0)
-      const slice = sequence === 'z'
-        ? !pinin.config.fZh2Z
-        : sequence === 'c'
-          ? !pinin.config.fCh2C
-          : sequence === 's'
-            ? !pinin.config.fSh2S
-            : false
-      if (slice) {
-        l[0] = pinin.phonemes.get(sequence)
-        l.splice(1, 0, pinin.phonemes.get('h'))
-      }
-    }
     this.phonemes = l
-
     this.duo = pinin.config.keyboard.duo
   }
 

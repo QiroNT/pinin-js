@@ -26,11 +26,11 @@ describe('PinIn standerd', () => {
 describe('PinIn convert', () => {
   const p = new PinIn({
     dict,
-    fSh2S: true,
+    fuzzy: ['sh|s', 'en>e'],
   })
 
   it('should do contains', () => {
-    expect(p.contains('测试文本', 'si4wen')).toBe(true)
+    expect(p.contains('测试文本', 'si4we')).toBe(true)
     expect(p.contains('测试文本', 'cehi')).toBe(false)
     expect(p.contains('测试文本', 'cesi1')).toBe(false)
   })
